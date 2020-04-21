@@ -1,32 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyPathfinding : MonoBehaviour
 {
-    float distance;
     public Transform Player;
-    public float moveSpeed = 2f;
+    public float speed = 2f;
+    Path path;
+    int currentWaypoint = 0;
+    bool reachedEndofPath = false;
+    Seeker seeker;
+    Rigidbody2D rb;
+    public float nextWaypointDistance = 3f;
+    
     // Start is called before the first frame update
     void Start()
     {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
 
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdatePath()
     {
-        distance = Vector2.Distance(Player.transform.position, transform.position);
-
-
+        if (seeker.IsDone())
+        seeker.StartPath(rb.position, Player.position, OnPathComplete);
     }
+       
 
-    private void FixedUpdate()
+    void OnPathComplete(Path p)
     {
-        if (distance <= 10)
+        if (!p.error)
         {
-            transform.rotation = Player.transform.rotation;
-            transform.position = (new Vector3(0, 2, 0) * moveSpeed * Time.fixedDeltaTime);
+            path = p;
+            currentWaypoint = 0;
         }
     }
-}
+
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (path == null)
+        
+            return;
+        
+
+        if(currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndofPath = true;
+            return;
+        }else
+        {
+            reachedEndofPath = false;
+        }
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+
+        rb.AddForce(force);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+    }
+
+   
+    }
+        
+    
+        
+    
+
