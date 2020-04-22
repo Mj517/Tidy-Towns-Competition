@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 137730842}
   - component: {fileID: 137730844}
   - component: {fileID: 137730843}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,12 +388,12 @@ GameObject:
   m_Component:
   - component: {fileID: 486782294}
   - component: {fileID: 486782299}
-  - component: {fileID: 486782298}
   - component: {fileID: 486782297}
   - component: {fileID: 486782296}
   - component: {fileID: 486782295}
   - component: {fileID: 486782300}
-  m_Layer: 0
+  - component: {fileID: 486782298}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07655978, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -439,7 +439,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75905275, y: 0.81336546}
+  m_Size: {x: 0.91, y: 0.81336546}
   m_EdgeRadius: 0
 --- !u!114 &486782296
 MonoBehaviour:
@@ -477,32 +477,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &486782298
-BoxCollider2D:
+--- !u!114 &486782298
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486782293}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.07381511, y: -0.0027445555}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9, y: 0.8}
-    newSize: {x: 0.9, y: 0.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75540495, y: 0.8206961}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfac5062c28165c47b7a8c6ccfb09b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!212 &486782299
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -785,7 +773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563680879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 2.67, z: 0}
+  m_LocalPosition: {x: -7.77, y: -3.83, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1208032176}
@@ -961,7 +949,8 @@ GameObject:
   - component: {fileID: 898610114}
   - component: {fileID: 898610113}
   - component: {fileID: 898610116}
-  m_Layer: 0
+  - component: {fileID: 898610117}
+  m_Layer: 8
   m_Name: EnemyPath
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -981,8 +970,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 563680883}
-  speed: 400
-  nextWaypointDistance: 0.1
+  speed: 1600
+  nextWaypointDistance: 1.5
+  distanceFromPlayer: 0
+  enemyH: 0
+  enemy: {fileID: 486782293}
 --- !u!114 &898610114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,7 +1031,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 6
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -1047,6 +1039,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &898610117
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898610112}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.60257983, y: 0.8143307}
+  m_EdgeRadius: 0
 --- !u!1 &1094710220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1208,7 @@ GameObject:
   - component: {fileID: 1116782273}
   - component: {fileID: 1116782275}
   - component: {fileID: 1116782274}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1625,7 +1643,7 @@ GameObject:
   - component: {fileID: 1908510303}
   - component: {fileID: 1908510305}
   - component: {fileID: 1908510304}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,7 +1778,7 @@ GameObject:
   - component: {fileID: 1954854367}
   - component: {fileID: 1954854366}
   - component: {fileID: 1954854365}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnemyCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

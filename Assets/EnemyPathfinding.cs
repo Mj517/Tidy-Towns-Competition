@@ -13,6 +13,11 @@ public class EnemyPathfinding : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     public float nextWaypointDistance = 3f;
+    public float distanceFromPlayer;
+    public float enemyH;
+    public GameObject enemy;
+    
+   
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +26,9 @@ public class EnemyPathfinding : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
-       
+
+
+
     }
 
     void UpdatePath()
@@ -60,8 +67,13 @@ public class EnemyPathfinding : MonoBehaviour
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
+        if (distanceFromPlayer <= 10)
+        {
+            rb.AddForce(force);
+        }
 
-        rb.AddForce(force);
+
+
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -69,10 +81,31 @@ public class EnemyPathfinding : MonoBehaviour
         {
             currentWaypoint++;
         }
+
+    
     }
 
-   
+    private void Update()
+    {
+        
+        distanceFromPlayer = Vector2.Distance(rb.position, Player.position);
+        enemyH = (enemy.GetComponent<EnemyDeath>().enemyHealth);
+
+        if (enemyH == 0)
+        {
+            Destroy(gameObject);
+        }
+
+
+
+
+
+
+
     }
+
+
+}
         
     
         
