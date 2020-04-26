@@ -25,7 +25,9 @@ public class EnemyPathfinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
+        InvokeRepeating("UpdatePath", 0f, 0f);
+
+
 
 
 
@@ -69,7 +71,9 @@ public class EnemyPathfinding : MonoBehaviour
         Vector2 force = direction * speed * Time.deltaTime;
         if (distanceFromPlayer <= 10)
         {
+            UpdatePath();
             rb.AddForce(force);
+            
         }
 
 

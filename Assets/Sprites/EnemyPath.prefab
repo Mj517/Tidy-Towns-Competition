@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  speed: 1600
+  speed: 2000
   nextWaypointDistance: 1.5
   distanceFromPlayer: 0
   enemyH: 0
