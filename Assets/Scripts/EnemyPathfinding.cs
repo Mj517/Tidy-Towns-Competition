@@ -6,6 +6,7 @@ using Pathfinding;
 public class EnemyPathfinding : MonoBehaviour
 {
     public Transform Player;
+    public GameObject PlayerG;
     public float speed = 2f;
     Path path;
     int currentWaypoint = 0;
@@ -14,23 +15,17 @@ public class EnemyPathfinding : MonoBehaviour
     Rigidbody2D rb;
     public float nextWaypointDistance = 3f;
     public float distanceFromPlayer;
-    public float enemyH;
+    public float enemyH = 5f;
     public GameObject enemy;
-    
+    public float playerScore;
    
-    
+       
     // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
         InvokeRepeating("UpdatePath", 0f, 0f);
-
-
-
-
-
     }
 
     void UpdatePath()
@@ -48,6 +43,7 @@ public class EnemyPathfinding : MonoBehaviour
             currentWaypoint = 0;
         }
     }
+
 
 
     // Update is called once per frame
@@ -97,18 +93,10 @@ public class EnemyPathfinding : MonoBehaviour
 
         if (enemyH == 0)
         {
-            Destroy(gameObject);
+            PlayerG.GetComponent<Scoring>().IncreaseScore(10);
+            enabled = false;   
         }
-
-
-
-
-
-
-
     }
-
-
 }
         
     
