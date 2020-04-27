@@ -18,6 +18,7 @@ public class EnemyPathfinding : MonoBehaviour
     public float enemyH = 5f;
     public GameObject enemy;
     public float playerScore;
+    public float enemyRange = 10f;
    
        
     // Start is called before the first frame update
@@ -65,7 +66,7 @@ public class EnemyPathfinding : MonoBehaviour
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
-        if (distanceFromPlayer <= 10)
+        if (distanceFromPlayer <= enemyRange)
         {
             UpdatePath();
             rb.AddForce(force);
@@ -94,7 +95,7 @@ public class EnemyPathfinding : MonoBehaviour
         if (enemyH == 0)
         {
             PlayerG.GetComponent<Scoring>().IncreaseScore(10);
-            enabled = false;   
+            Destroy(gameObject);   
         }
     }
 }

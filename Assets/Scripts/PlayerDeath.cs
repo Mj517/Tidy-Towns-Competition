@@ -7,11 +7,14 @@ public class PlayerDeath : MonoBehaviour
     public int playerHealth;
     public int maxHealth = 20;
     public HealthBar healthBar;
+    public float lives = 3;
+    public Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
         playerHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        transform.position = spawnPoint.position;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -28,6 +31,13 @@ public class PlayerDeath : MonoBehaviour
         healthBar.SetHealth(playerHealth);
 
         if (playerHealth <= 0)
+        {
+            lives = lives - 1;
+            transform.position = spawnPoint.position;
+            playerHealth = maxHealth;
+        }
+
+        if (lives == 0)
         {
             Destroy(gameObject);
         }

@@ -76,12 +76,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc22537ca9f12e4ca06f6dba6188944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 942833922643391425, guid: 5f87344f95f75ac4ba55f0e395b41e05, type: 3}
+  PlayerG: {fileID: 942833922643391453, guid: 5f87344f95f75ac4ba55f0e395b41e05, type: 3}
   speed: 2000
   nextWaypointDistance: 1.5
   distanceFromPlayer: 0
   enemyH: 0
   enemy: {fileID: 1478882591722964455}
+  playerScore: 0
 --- !u!50 &1478882591060001654
 Rigidbody2D:
   serializedVersion: 4
