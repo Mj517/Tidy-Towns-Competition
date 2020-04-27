@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerDeath : MonoBehaviour
     public float lives = 3;
     public Transform spawnPoint;
     public bool gameOver = false;
+    public Text livesText;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,7 @@ public class PlayerDeath : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         transform.position = spawnPoint.position;
         gameObject.SetActive(true);
+        livesText.text = "x" + lives.ToString();
 
     }
 
@@ -44,5 +47,7 @@ public class PlayerDeath : MonoBehaviour
         {
             gameOver = true;
         }
+
+        livesText.text = "x" + lives.ToString();
     }
 }
