@@ -84,6 +84,7 @@ MonoBehaviour:
   enemyH: 0
   enemy: {fileID: 1478882591722964455}
   playerScore: 0
+  enemyRange: 10
 --- !u!50 &1478882591060001654
 Rigidbody2D:
   serializedVersion: 4

@@ -7,11 +7,12 @@ public class BossAppear : MonoBehaviour
     public float scoreTreshold = 50f;
     public float pScore;
     public GameObject Player;
+    public GameObject Boss;
     
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        Boss.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class BossAppear : MonoBehaviour
 
         if (pScore >= scoreTreshold)
         {
-            gameObject.SetActive(true);
+            Boss.SetActive(true);
         }
     }
 }
